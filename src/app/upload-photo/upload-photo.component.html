@@ -1,0 +1,49 @@
+<div class="card">
+  <h2 class="title">Comparte tu logro</h2>
+  <p class="subtitle">Sube una fotografía presumiendo tu ingreso a la Universidad Isep.</p>
+
+  <div
+    class="dropzone"
+    [class.dragging]="isDragging()"
+    (drop)="onDrop($event)"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+  >
+    <input id="file-input" type="file" accept="image/*" (change)="onFileChange($event)" hidden>
+    <label for="file-input" class="picker">
+      <div class="icon">📷</div>
+      <div class="text">
+        Arrastra y suelta tu imagen aquí o
+        <span class="cta">explora tu dispositivo</span>
+      </div>
+      <div class="hint">Formatos admitidos: JPG, PNG, HEIC. Tamaño recomendado: 5MB o menos.</div>
+    </label>
+  </div>
+
+  @if (previewUrl) {
+    <div class="preview">
+      <img [src]="previewUrl!" alt="Vista previa de la imagen">
+      <button type="button" class="remove" (click)="removeFile()">Quitar</button>
+    </div>
+  }
+
+  <div class="actions">
+    <button class="btn" [disabled]="!file || isUploading()" (click)="upload()">
+      @if (isUploading()) { <span class="spinner"></span> Subiendo... }
+      @else { Compartir foto }
+    </button>
+    @if (isUploading()) {
+      <div class="progress">
+        <div class="bar" [style.width.%]="progress()"></div>
+      </div>
+    }
+  </div>
+</div>
+
+<app-toast
+  [show]="toastVisible()"
+  [message]="toastMessage()"
+  [type]="toastType()"
+  (closed)="onToastClosed()"
+/>
+</div>
