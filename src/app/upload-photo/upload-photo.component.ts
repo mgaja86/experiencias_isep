@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Signal, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, WritableSignal, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
 import { ToastComponent } from '../toast/toast.component';
@@ -17,13 +17,13 @@ export class UploadPhotoComponent {
   file: File | null = null;
   previewUrl: string | null = null;
 
-  isDragging: Signal<boolean> = signal(false);
-  isUploading: Signal<boolean> = signal(false);
-  progress: Signal<number> = signal(0);
+  isDragging: WritableSignal<boolean> = signal(false);
+  isUploading: WritableSignal<boolean> = signal(false);
+  progress: WritableSignal<number> = signal(0);
 
-  toastVisible: Signal<boolean> = signal(false);
-  toastMessage: Signal<string> = signal('');
-  toastType: Signal<'success' | 'error' | 'info'> = signal('info');
+  toastVisible: WritableSignal<boolean> = signal(false);
+  toastMessage: WritableSignal<string> = signal('');
+  toastType: WritableSignal<'success' | 'error' | 'info'> = signal('info');
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
@@ -80,7 +80,6 @@ export class UploadPhotoComponent {
     if (!this.file) return;
 
     const formData = new FormData();
-    // Enviar el archivo con la clave 'file'
     formData.append('file', this.file, this.file.name);
 
     this.isUploading.set(true);
@@ -99,7 +98,6 @@ export class UploadPhotoComponent {
           this.isUploading.set(false);
           this.progress.set(100);
           this.showToast('¡Tu foto se ha enviado con éxito! 🎉', 'success');
-          // Reset tras un breve retraso para que se vea el 100%
           setTimeout(() => {
             this.removeFile();
             this.cdr.markForCheck();
@@ -118,7 +116,6 @@ export class UploadPhotoComponent {
     this.toastMessage.set(message);
     this.toastType.set(type);
     this.toastVisible.set(true);
-    // Ocultar automáticamente
     setTimeout(() => {
       this.toastVisible.set(false);
       this.cdr.markForCheck();

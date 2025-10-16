@@ -10,4 +10,6 @@ import { UploadPhotoComponent } from '../upload-photo/upload-photo.component';
   styleUrl: './landing.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LandingComponent {}
+export class LandingComponent {
+  currentYear = new Date().getFullYear();
+}
