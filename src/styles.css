@@ -15,9 +15,9 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
   color: #fff;
   background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(120, 72, 255, 0.25), transparent 60%),
-    radial-gradient(900px 500px at 110% 110%, rgba(255, 127, 29, 0.15), transparent 60%),
-    linear-gradient(160deg, var(--isepp-primary) 60%, color-mix(in srgb, var(--isepp-primary) 60%, var(--isepp-secondary)) 100%);
+    radial-gradient(1200px 600px at 10% -10%, rgba(120, 72, 255, 0.3), transparent 60%),
+    radial-gradient(900px 500px at 110% 110%, rgba(255, 127, 29, 0.2), transparent 60%),
+    linear-gradient(160deg, #2E258A 0%, var(--isepp-primary) 85%);
   background-attachment: fixed;
   overflow-x: hidden;
 }
