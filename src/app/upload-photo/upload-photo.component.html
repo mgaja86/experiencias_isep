@@ -2,6 +2,18 @@
   <h2 class="title">Comparte tu logro</h2>
   <p class="subtitle">Sube una fotografía presumiendo tu ingreso a la Universidad Isep.</p>
 
+  <div class="form-group">
+    <label for="name-input" class="form-label">Tu nombre completo</label>
+    <input
+      id="name-input"
+      type="text"
+      class="form-input"
+      placeholder="Ej: Ana Sofía Pérez"
+      [value]="userName()"
+      (input)="userName.set($any($event.target).value)"
+    >
+  </div>
+
   <div
     class="dropzone"
     [class.dragging]="isDragging()"
@@ -28,7 +40,7 @@
   }
 
   <div class="actions">
-    <button class="btn" [disabled]="!file || isUploading()" (click)="upload()">
+    <button class="btn" [disabled]="!file || !userName().trim() || isUploading()" (click)="upload()">
       @if (isUploading()) { <span class="spinner"></span> Subiendo... }
       @else { Compartir foto }
     </button>

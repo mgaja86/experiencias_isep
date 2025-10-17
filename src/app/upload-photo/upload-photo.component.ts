@@ -16,6 +16,7 @@ const WEBHOOK_URL = 'https://workflow.universidadisep.com/webhook/comparte_tu_ex
 export class UploadPhotoComponent {
   file: File | null = null;
   previewUrl: string | null = null;
+  userName: WritableSignal<string> = signal('');
 
   isDragging: WritableSignal<boolean> = signal(false);
   isUploading: WritableSignal<boolean> = signal(false);
@@ -73,14 +74,19 @@ export class UploadPhotoComponent {
     }
     this.previewUrl = null;
     this.progress.set(0);
+    this.userName.set('');
     this.cdr.markForCheck();
   }
 
   upload() {
-    if (!this.file) return;
+    if (!this.file || !this.userName().trim()) {
+      this.showToast('Por favor, completa tu nombre y selecciona una foto.', 'error');
+      return;
+    }
 
     const formData = new FormData();
     formData.append('file', this.file, this.file.name);
+    formData.append('name', this.userName().trim());
 
     this.isUploading.set(true);
     this.progress.set(0);

@@ -28,6 +28,39 @@
   margin-bottom: 18px;
 }
 
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #e8e6ff;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(120, 72, 255, 0.4);
+  background: rgba(27, 21, 107, 0.5);
+  color: #fff;
+  font-size: 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #FF7F1D;
+  box-shadow: 0 0 0 3px rgba(255, 127, 29, 0.3);
+}
+
 .dropzone {
   position: relative;
   border: 2px dashed rgba(120, 72, 255, 0.6);
