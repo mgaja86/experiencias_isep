@@ -1,6 +1,6 @@
 <div class="card">
   <h2 class="title">Comparte tu logro</h2>
-  <p class="subtitle">Sube una fotografía presumiendo tu ingreso a la Universidad Isep.</p>
+  <p class="subtitle">Sube una fotografía o video presumiendo tu ingreso a la Universidad Isep.</p>
 
   <div class="form-group">
     <label for="name-input" class="form-label">Tu nombre completo</label>
@@ -33,20 +33,24 @@
     (dragover)="onDragOver($event)"
     (dragleave)="onDragLeave($event)"
   >
-    <input id="file-input" type="file" accept="image/*" (change)="onFileChange($event)" hidden>
+    <input id="file-input" type="file" accept="image/*,video/*" (change)="onFileChange($event)" hidden>
     <label for="file-input" class="picker">
       <div class="icon">📷</div>
       <div class="text">
-        Arrastra y suelta tu imagen aquí o
+        Arrastra y suelta tu imagen o video aquí o
         <span class="cta">explora tu dispositivo</span>
       </div>
-      <div class="hint">Formatos admitidos: JPG, PNG, HEIC. Tamaño recomendado: 5MB o menos.</div>
+      <div class="hint">Formatos admitidos: JPG, PNG, MP4, MOV. Tamaño máximo: 25MB.</div>
     </label>
   </div>
 
   @if (previewUrl) {
     <div class="preview">
-      <img [src]="previewUrl!" alt="Vista previa de la imagen">
+      @if (fileType() === 'image') {
+        <img [src]="previewUrl!" alt="Vista previa de la imagen">
+      } @else if (fileType() === 'video') {
+        <video [src]="previewUrl!" autoplay muted loop playsinline controls alt="Vista previa del video"></video>
+      }
       <button type="button" class="remove" (click)="removeFile()">Quitar</button>
     </div>
   }
@@ -54,7 +58,7 @@
   <div class="actions">
     <button class="btn" [disabled]="!file || !userName().trim() || !programName().trim() || isUploading()" (click)="upload()">
       @if (isUploading()) { <span class="spinner"></span> Subiendo... }
-      @else { Compartir foto }
+      @else { Compartir archivo }
     </button>
     @if (isUploading()) {
       <div class="progress">

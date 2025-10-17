@@ -16,6 +16,7 @@ const WEBHOOK_URL = 'https://workflow.universidadisep.com/webhook/comparte_tu_ex
 export class UploadPhotoComponent {
   file: File | null = null;
   previewUrl: string | null = null;
+  fileType: WritableSignal<'image' | 'video' | null> = signal(null);
   userName: WritableSignal<string> = signal('');
   programName: WritableSignal<string> = signal('');
 
@@ -55,11 +56,17 @@ export class UploadPhotoComponent {
 
   private setFile(file: File | null) {
     if (!file) return;
-    if (!file.type.startsWith('image/')) {
-      this.showToast('Por favor selecciona una imagen válida.', 'error');
+    if (!file.type.startsWith('image/') && !file.type.startsWith('video/')) {
+      this.showToast('Por favor selecciona un archivo de imagen o video válido.', 'error');
       return;
     }
     this.file = file;
+
+    if (file.type.startsWith('image/')) {
+      this.fileType.set('image');
+    } else if (file.type.startsWith('video/')) {
+      this.fileType.set('video');
+    }
 
     if (this.previewUrl) {
       URL.revokeObjectURL(this.previewUrl);
@@ -74,6 +81,7 @@ export class UploadPhotoComponent {
       URL.revokeObjectURL(this.previewUrl);
     }
     this.previewUrl = null;
+    this.fileType.set(null);
     this.progress.set(0);
     this.userName.set('');
     this.programName.set('');
@@ -82,7 +90,7 @@ export class UploadPhotoComponent {
 
   upload() {
     if (!this.file || !this.userName().trim() || !this.programName().trim()) {
-      this.showToast('Por favor, completa todos los campos y selecciona una foto.', 'error');
+      this.showToast('Por favor, completa todos los campos y selecciona un archivo.', 'error');
       return;
     }
 
@@ -106,7 +114,7 @@ export class UploadPhotoComponent {
         } else if (event.type === HttpEventType.Response) {
           this.isUploading.set(false);
           this.progress.set(100);
-          this.showToast('¡Tu foto se ha enviado con éxito! 🎉', 'success');
+          this.showToast('¡Tu archivo se ha enviado con éxito! 🎉', 'success');
           setTimeout(() => {
             this.removeFile();
             this.cdr.markForCheck();
@@ -115,7 +123,7 @@ export class UploadPhotoComponent {
       },
       error: () => {
         this.isUploading.set(false);
-        this.showToast('No se pudo enviar la foto. Si el problema persiste, puede ser una restricción de CORS del servidor.', 'error');
+        this.showToast('No se pudo enviar el archivo. Si el problema persiste, puede ser una restricción de CORS del servidor.', 'error');
         this.cdr.markForCheck();
       }
     });
