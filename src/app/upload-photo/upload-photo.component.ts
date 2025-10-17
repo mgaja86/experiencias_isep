@@ -98,6 +98,7 @@ export class UploadPhotoComponent {
     formData.append('file', this.file, this.file.name);
     formData.append('name', this.userName().trim());
     formData.append('program', this.programName().trim());
+    formData.append('fileType', this.fileType()!);
 
     this.isUploading.set(true);
     this.progress.set(0);
