@@ -14,6 +14,18 @@
     >
   </div>
 
+  <div class="form-group">
+    <label for="program-input" class="form-label">Tu formación</label>
+    <input
+      id="program-input"
+      type="text"
+      class="form-input"
+      placeholder="Ej: Máster en Psicología Clínica"
+      [value]="programName()"
+      (input)="programName.set($any($event.target).value)"
+    >
+  </div>
+
   <div
     class="dropzone"
     [class.dragging]="isDragging()"
@@ -40,7 +52,7 @@
   }
 
   <div class="actions">
-    <button class="btn" [disabled]="!file || !userName().trim() || isUploading()" (click)="upload()">
+    <button class="btn" [disabled]="!file || !userName().trim() || !programName().trim() || isUploading()" (click)="upload()">
       @if (isUploading()) { <span class="spinner"></span> Subiendo... }
       @else { Compartir foto }
     </button>
