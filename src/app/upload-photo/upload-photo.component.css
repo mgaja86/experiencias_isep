@@ -4,14 +4,12 @@
   margin: 0 auto;
   padding: 28px;
   border-radius: 20px;
-  background: linear-gradient(180deg, rgba(27,21,107,0.65), rgba(27,21,107,0.45));
-  border: 1px solid rgba(255,255,255,0.18);
+  background: linear-gradient(160deg, #2E258A, #1B156B); /* Fondo oscuro y opaco */
+  border: 1px solid rgba(255,255,255,0.1);
   box-shadow:
-    0 12px 36px rgba(0,0,0,0.35),
+    0 16px 48px rgba(27, 21, 107, 0.3),
     0 0 0 1px rgba(255,255,255,0.05) inset;
   color: #fff;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
 }
 
 .title {

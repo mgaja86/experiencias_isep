@@ -5,7 +5,7 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 24px;
-  color: #fff;
+  /* Se elimina color: #fff para heredar el color oscuro del body */
   overflow: hidden; /* Contiene los blobs */
 }
 
@@ -29,6 +29,7 @@
   border-radius: 12px;
   background: linear-gradient(135deg, #7848FF, #1B156B 60%);
   box-shadow: 0 10px 24px rgba(120, 72, 255, 0.4);
+  color: #fff; /* Se mantiene el texto blanco para el logo */
 }
 
 .tag {
@@ -40,7 +41,7 @@
   font-weight: 900;
   line-height: 1.06;
   margin: 6px 0 10px;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 15px rgba(0,0,0,0.1); /* Sombra de texto más sutil */
 }
 
 .accent {
@@ -55,7 +56,7 @@
 .lead {
   max-width: 740px;
   margin: 0 auto;
-  color: #e8e6ff;
+  color: #595d83; /* Tono más oscuro para el texto secundario */
   opacity: 0.95;
 }
 
@@ -71,34 +72,34 @@
   font-size: 13px;
 }
 
-/* Blobs y overlay */
+/* Blobs y overlay ajustados para fondo claro */
 .blob {
   position: absolute;
-  filter: blur(55px);
-  opacity: 0.55;
+  filter: blur(80px);
   z-index: -1;
 }
 
 .blob-1 {
   width: 420px; height: 420px;
-  top: -60px; left: -60px;
+  top: -100px; left: -100px;
   background: radial-gradient(50% 50% at 50% 50%, #7848FF 0%, rgba(120, 72, 255, 0) 70%);
+  opacity: 0.25;
 }
 
 .blob-2 {
   width: 520px; height: 520px;
-  bottom: -80px; right: -80px;
+  bottom: -120px; right: -120px;
   background: radial-gradient(50% 50% at 50% 50%, #FF7F1D 0%, rgba(255, 127, 29, 0) 70%);
-  opacity: 0.4;
+  opacity: 0.2;
 }
 
 .grid-overlay {
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
-  background-size: 22px 22px;
-  mask: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,1) 60%);
+    radial-gradient(circle at 1px 1px, rgba(27, 21, 107, 0.08) 1px, transparent 0);
+  background-size: 28px 28px;
+  mask: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,1) 80%);
   z-index: -2;
 }
 

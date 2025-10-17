@@ -13,11 +13,11 @@ html, body {
 
 body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-  color: #fff;
-  background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(120, 72, 255, 0.3), transparent 60%),
-    radial-gradient(900px 500px at 110% 110%, rgba(255, 127, 29, 0.2), transparent 60%),
-    linear-gradient(160deg, #2E258A 0%, var(--isepp-primary) 85%);
+  color: #2E258A; /* Cambiado a color oscuro para contraste */
+  background-color: #f4f4f7; /* Fondo gris claro y neutro */
+  background-image:
+    radial-gradient(circle at 5% 5%, rgba(120, 72, 255, 0.08), transparent 35%),
+    radial-gradient(circle at 95% 95%, rgba(255, 127, 29, 0.06), transparent 35%);
   background-attachment: fixed;
   overflow-x: hidden;
 }
