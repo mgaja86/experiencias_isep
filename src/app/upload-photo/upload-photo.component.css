@@ -190,3 +190,15 @@
   width: 0%;
   transition: width 0.2s ease;
 }
+
+@media (max-width: 480px) {
+  .card {
+    padding: 24px 20px;
+  }
+  .title {
+    font-size: 22px;
+  }
+  .dropzone {
+    padding: 20px;
+  }
+}

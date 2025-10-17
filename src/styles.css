@@ -19,4 +19,5 @@ body {
     radial-gradient(900px 500px at 110% 110%, rgba(255, 127, 29, 0.15), transparent 60%),
     linear-gradient(160deg, var(--isepp-primary) 60%, color-mix(in srgb, var(--isepp-primary) 60%, var(--isepp-secondary)) 100%);
   background-attachment: fixed;
+  overflow-x: hidden;
 }
